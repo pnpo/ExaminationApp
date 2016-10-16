@@ -35,4 +35,4 @@ Exam.prototype.formatPDF = function() {
 
 }
 
-exports.Exam = new Exam();
+exports.Exam = Exam;

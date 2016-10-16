@@ -1,10 +1,14 @@
 const app_dir = 'file://' + __dirname + '/app';
 const renderer_dir = app_dir + '/renderer';
+const modules_dir = app_dir + '/js';
 
 const electron = require('electron');
-const{app, BrowserWindow} = electron;
+const{app, BrowserWindow, ipcMain} = electron;
+
+const {Exam} = require('./app/js/examination-app.js'); 
 
 let screen_w, screen_h;
+let exam = new Exam();
 
 //windows
 let win = null;
@@ -21,4 +25,14 @@ app.on('ready', ()=>{
     screen_w = width;
     screen_h = height;
     createMainWindow();
+
+    //exam.student.name = 'nuno';
+    //console.log(exam.student.name);
+
+});
+
+
+//Inter-window communications
+ipcMain.on('start-sensing-internet', ()=>{
+
 });
