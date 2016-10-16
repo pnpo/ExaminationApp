@@ -9,6 +9,7 @@
   "author": "Nuno Oliveira",
   "license": "ISC",
   "devDependencies": {
-    "electron-prebuilt": "^1.4.3"
+    "electron-prebuilt": "^1.4.3",
+    "jquery": "^3.1.1"
   }
 }
