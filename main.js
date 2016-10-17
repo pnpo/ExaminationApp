@@ -2,6 +2,7 @@ const app_dir = 'file://' + __dirname + '/app';
 const renderer_dir = app_dir + '/renderer';
 const modules_dir = app_dir + '/js';
 
+const fs = require('fs');
 const electron = require('electron');
 const{app, BrowserWindow, ipcMain} = electron;
 
@@ -26,8 +27,13 @@ app.on('ready', ()=>{
     screen_h = height;
     createMainWindow();
 
-    //exam.student.name = 'nuno';
-    //console.log(exam.student.name);
+    fs.readFile('./app/exam_samples/exam1.json', 'utf-8', (err, data) => {
+        if (err) throw err;
+        exam.load(JSON.parse(data));
+        console.log(exam);
+    })
+
+    
 
 });
 
