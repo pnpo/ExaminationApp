@@ -6,15 +6,55 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
          <link href="../css/bootstrap.min.css" rel="stylesheet">
+         <link href="../css/custom.style.css" rel="stylesheet">
 
     </head>
     <body>
-        <div id="teste">
+        <h1>
+            Benvindo ao seu teste!
+        </h1>
+        <p>
+            Introduza o seu nome e número. Indique ainda as restantes credenciais conforme fornecido pelo seu professor.
+        </p>
+        <div id="login_page">
+            
+            <form class="">
+                <input id="tb_name" type="text" placeholder="Introduza o seu nome" required/>
+                <input id="tb_number" type="text" placeholder="Introduza o seu número de aluno" required/>
+                <input id="tb_server" type="text" placeholder="http://..." required/>
+                <input id="tb_eid" type="text" placeholder="Introduza o identificador do exame" required/>
+                <button id="btn_enter">Entrar</button>
+            </form>
+
+        </div>
+
+        <div id="loading_page">
+            <h1>A carregar o exame...</h1>
+            <img src="../images/loading.gif" alt="A carregar o exame" />
+        </div>
+
+        <div id="exame_page">
+            <div id="top">
+            </div>
+            <div id="content">
+                <div id="questions">    
+                </div>
+                <div id="disclaimer">
+
+                </div>
+                 <div id="question">
+
+                </div>
+                <div id="answer">
+
+                </div>
+            </div>
         </div>
 
         <script>
             window.$=window.jQuery=require('jquery');
         </script>
         <script src="../js/bootstrap.min.js"></script>
+        <script src="../js/main-code.js"></script>
     </body>
 </html>

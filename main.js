@@ -27,11 +27,11 @@ app.on('ready', ()=>{
     screen_h = height;
     createMainWindow();
 
-    fs.readFile('./app/exam_samples/exam1.json', 'utf-8', (err, data) => {
-        if (err) throw err;
-        exam.load(JSON.parse(data));
-        console.log(exam);
-    })
+    // fs.readFile('./app/exam_samples/exam1.json', 'utf-8', (err, data) => {
+    //     if (err) throw err;
+    //     exam.load(JSON.parse(data));
+    //     console.log(exam);
+    // })
 
     
 
