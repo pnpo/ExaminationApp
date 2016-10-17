@@ -1,0 +1,45 @@
+{
+    "exam": {
+        "id" : 1,
+        "teacher" : "Pedro Henriques",
+        "date" : "2 Novembro 2016",
+        "questions" : [
+            {
+                "value" : 5,
+                "text" : "Leia as frases com atenção e classifique-as como V-verdadeiras ou F-falsas.",
+                "alineas" : [
+                    {
+                        "value" : 2.5,
+                        "text" : "Um Button é uma View."
+                    },
+                    {
+                        "value" : 2.5,
+                        "text" : "Uma TextView serve para colocar o utilizador introduzir texto."
+                    }
+                ] 
+            },
+            {
+                "value" : 5,
+                "text" : "Implemente uma função que dados dois inteiros devolve o maior dos dois."
+            },
+            {
+                "value" : 6,
+                "text" : "Complete os espaços de forma a tornar frases verdadeiras.",
+                "alineas": [
+                    {
+                        "value" : 2,
+                        "text" : "Um carro tem ____________ rodas."
+                    },
+                    {
+                        "value" : 2,
+                        "text" : "Uma vaca tem ____________ patas."
+                    },
+                    {
+                        "value" : 2,
+                        "text" : "Um pato tem ____________ patas."
+                    }
+                ]
+            }          
+        ]
+    }
+}
