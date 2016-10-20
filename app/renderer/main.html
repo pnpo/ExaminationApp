@@ -7,55 +7,67 @@
 
          <link href="../css/bootstrap.min.css" rel="stylesheet">
          <link href="../css/custom.style.css" rel="stylesheet">
+        
 
     </head>
     <body>
            
-        <nav>
-                
-              
-        </nav>
-
-        <h1>
-            Benvindo ao seu teste!
-        </h1>
-        <p>
-            Introduza o seu nome e número. Indique ainda as restantes credenciais conforme fornecido pelo seu professor.
-        </p>
-        <div id="login_page">
+        <header>
             
-            <form class="">
-                <input id="tb_name" type="text" placeholder="Introduza o seu nome" required/>
-                <input id="tb_number" type="text" placeholder="Introduza o seu número de aluno" required/>
-                <input id="tb_server" type="text" placeholder="http://..." required/>
-                <input id="tb_eid" type="text" placeholder="Introduza o identificador do exame" required/>
-                <button id="btn_enter">Entrar</button>
-            </form>
+        </header>
+       
+        <main>
+            <div id="login_page" hidden>
+                <h1>
+                    Benvindo ao seu teste!
+                </h1>
+                <p>
+                    Introduza o seu nome e número. Indique ainda as restantes credenciais conforme fornecido pelo seu professor.
+                </p>
+                <form class="">
+                    <input id="tb_name" type="text" placeholder="Introduza o seu nome" required/>
+                    <input id="tb_number" type="text" placeholder="Introduza o seu número de aluno" required/>
+                    <input id="tb_server" type="text" placeholder="http://..." required/>
+                    <input id="tb_eid" type="text" placeholder="Introduza o identificador do exame" required/>
+                    <button id="btn_enter">Entrar</button>
+                </form>
+            </div> <!-- End login page -->
 
-        </div>
+            <div id="loading_page" hidden>
+                <h1>A carregar o exame...</h1>
+                <img src="../images/loading.gif" alt="A carregar o exame" />
+            </div> <!--End loading page-->
 
-        <div id="loading_page">
-            <h1>A carregar o exame...</h1>
-            <img src="../images/loading.gif" alt="A carregar o exame" />
-        </div>
+            <div id="exam_page">
+                
+                <div class="row">
+                    <div class="col-xs-2 questions">  
+                        a  
+                    </div>
+                    <div class="col-xs-10 exam-content">
+                       
+                        a
+                        <div id="disclaimer">
 
-        <div id="exame_page">
-            <div id="top">
-            </div>
-            <div id="content">
-                <div id="questions">    
+                        </div>
+                        <div id="question">
+
+                        </div>
+                        <div id="answer">
+
+                        </div>
+
+                    </div>
                 </div>
-                <div id="disclaimer">
+            </div> <!-- End exame page -->
 
-                </div>
-                 <div id="question">
 
-                </div>
-                <div id="answer">
+        </main>
+        
 
-                </div>
-            </div>
-        </div>
+        
+
+        
 
         <footer class="footer">
             <div class="container">
