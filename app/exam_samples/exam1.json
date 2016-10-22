@@ -3,6 +3,7 @@
         "id" : 1,
         "teacher" : "Pedro Henriques",
         "date" : "2 Novembro 2016",
+        "disclaimer": "Tem 90min para a realização deste exame!",
         "questions" : [
             {
                 "value" : 5,
