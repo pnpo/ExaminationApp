@@ -45,7 +45,16 @@
                     <div class="col-xs-2 questions">  
                         <h1>Questões</h1>
                         <ul id="questions-placeholder">
-                            <li class="question-item-wrapper">
+                            
+                            <template id="question-numbers">
+                                <li class="question-item-wrapper">
+                                    <div class="question-number circle">
+                                        <a><!--{{question.number}}--></a>
+                                    </div>
+                                </li>
+                            </template>
+                            
+                            <!--li class="question-item-wrapper">
                                 <div class="question-number circle">
                                     <a>1</a>
                                 </div>
@@ -74,32 +83,36 @@
                                 <div class="question-number circle">
                                     <a>6</a>
                                 </div>
-                            </li>
+                            </li-->
                         </ul>
 
                     </div>
                     <div class="col-xs-10 exam-content flexible-container as-column">
-                       
-                        <div id="disclaimer">
+                       <template>
+                            <div id="disclaimer">
+                            </div>   
+                       </template>
+
+                        <!--div id="disclaimer">
                             <h3>
                                 Dispõe de 90 minutos para realizar este teste.</br>
                                 Qualquer tentativa de fraude será punida com a eliminação desta prova.
                             </h3>
-                        </div>
+                        </div-->>
                         <div id="question-body" class="flexible-container contained as-column">
                             <div class="row flexible-container contained">
                                 <div class="col-xs-1">
-                                    <ul class="question-number-value">
+                                    <ul class="question-value">
                                         <li class="question-item-wrapper">
                                             <div class="small-circle ">
-                                                <a>5v</a>
+                                                <a id="question-value">5v</a>
                                             </div>
                                         </li>
                                     </ul>
                                 </div>
                                 <div class="col-xs-11 flexible-container contained as-column">
-                                    <div class="question-main-text">
-                                        <i class="fa fa-arrow-circle-right"></i> Classifique as seguintes afirmações como verdadeiras ou falsas.
+                                    <div id="question-text" class="question-main-text">
+                                        <i class="fa fa-arrow-circle-right"></i> <!--Classifique as seguintes afirmações como verdadeiras ou falsas.-->
                                     </div>
                                     <div class="question-alineas flexible-container contained as-column" >
                                         <ul class="nav nav-tabs">
