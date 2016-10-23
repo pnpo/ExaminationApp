@@ -96,7 +96,6 @@ main {
   color:#eee;
   display:block;
 	width:100%;
-  font-size:1.2em;
   font-weight:bold;
   text-decoration:none;
 
@@ -106,11 +105,104 @@ main {
 	margin-top:-1em;
 }
 
+
+
+.small-circle {
+  border-radius:50%;
+  height:45px;
+  width:45px;
+  background:#fff;
+  margin: 0 auto;
+  overflow:hidden;
+  text-align:center;
+  line-height:45px;
+  box-shadow: 0px 0px 20px 2px #fff; 
+}
+
+.small-circle a {
+  font-size:1em;
+  color:#999;
+  display:block;
+	width:100%;
+  font-weight:bold;
+  text-decoration:none;
+
+  padding-top:50%;
+  padding-bottom:50%;
+	
+	margin-top:-1.6em;
+}
+
+
+
+
 .exam-content {
   background-color: #eee;
-  height: 100%; 
+  height: 100%;
+  color: #555; 
 }
-                  
+
+#disclaimer {
+  border-bottom: 1px solid #ccc;
+}
+#disclaimer h3 {
+  font-size: 10pt;
+}
+
+
+#question-body {
+  padding: 15px 0 15px 0;
+  text-align: justify;
+}
+
+.question-number-value {
+  margin:0;
+  padding: 0;
+}
+
+.question-main-text {
+  padding: 15px 0 15px 0;
+  text-align: justify;
+}
+
+.work-item {
+  width: 100%;
+  text-align: right;
+  position: absolute;
+  z-index: 1;
+  top:22px;
+  right: 5px;
+  color:#999;
+}
+
+.answer {
+  resize: none;
+  height:90%;
+}
+
+.tab-pane {
+  padding-top: 15px;
+  padding-left: 10px;
+}
+
+
+.flexible-container {
+  display:flex;
+}
+
+.as-column {
+  flex-flow:column;
+}
+
+.contained {
+  flex:1 1 auto;
+}
+
+.tab-content>.active {
+  display: flex;
+}
+
+
 .footer {
     width: 100%;
     position: absolute;

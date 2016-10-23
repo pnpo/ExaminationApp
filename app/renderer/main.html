@@ -6,6 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
          <link href="../css/bootstrap.min.css" rel="stylesheet">
+         <link href="../css/font-awesome.min.css" rel="stylesheet">
          <link href="../css/custom.style.css" rel="stylesheet">
         
 
@@ -77,17 +78,61 @@
                         </ul>
 
                     </div>
-                    <div class="col-xs-10 exam-content">
+                    <div class="col-xs-10 exam-content flexible-container as-column">
                        
-                        
                         <div id="disclaimer">
-
+                            <h3>
+                                Dispõe de 90 minutos para realizar este teste.</br>
+                                Qualquer tentativa de fraude será punida com a eliminação desta prova.
+                            </h3>
                         </div>
-                        <div id="question">
+                        <div id="question-body" class="flexible-container contained as-column">
+                            <div class="row flexible-container contained">
+                                <div class="col-xs-1">
+                                    <ul class="question-number-value">
+                                        <li class="question-item-wrapper">
+                                            <div class="small-circle ">
+                                                <a>5v</a>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="col-xs-11 flexible-container contained as-column">
+                                    <div class="question-main-text">
+                                        <i class="fa fa-arrow-circle-right"></i> Classifique as seguintes afirmações como verdadeiras ou falsas.
+                                    </div>
+                                    <div class="question-alineas flexible-container contained as-column" >
+                                        <ul class="nav nav-tabs">
+                                            <li class="alinea active">
+                                                <i class="work-item fa fa-check-square-o"></i>
+                                                <a data-toggle="tab" href="#home">3.1</a>
+                                            </li>
+                                            <li class="alinea">
+                                                <i class="work-item fa fa-square-o"></i>
+                                                <a data-toggle="tab" href="#menu1">3.2</a>
+                                            </li>
+                                            <li class="alinea">
+                                                <i class="work-item fa fa-square-o"></i>
+                                                <a data-toggle="tab" href="#menu2">3.3</a>
+                                            </li>
+                                        </ul>
 
-                        </div>
-                        <div id="answer">
-
+                                        <div class="tab-content flexible-container contained as-column">
+                                            <div id="home" class="flexible-container contained as-column tab-pane fade in active ">
+                                                <p><i class="fa fa-arrow-circle-right"></i> Some content.</p>
+                                                <textarea class="answer form-control contained" id="q1a1" placeholder="A sua resposta aqui..." ></textarea>
+                                            </div>
+                                            <div id="menu1" class="tab-pane fade">
+                                                
+                                                <p>Some content in menu 1.</p>
+                                            </div>
+                                            <div id="menu2" class="tab-pane fade">
+                                                <p>Some content in menu 2.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div> 
                         </div>
 
                     </div>
