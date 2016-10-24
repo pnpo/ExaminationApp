@@ -150,14 +150,9 @@ main {
 }
 
 
-#question-body {
+.question-body {
   padding: 15px 0 15px 0;
   text-align: justify;
-}
-
-.question-value {
-  margin:0;
-  padding: 0;
 }
 
 .question-main-text {

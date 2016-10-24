@@ -46,10 +46,10 @@
                         <h1>Questões</h1>
                         <ul id="questions-placeholder">
                             
-                            <template id="question-numbers">
+                            <template id="question-numbers-template">
                                 <li class="question-item-wrapper">
                                     <div class="question-number circle">
-                                        <a><!--{{question.number}}--></a>
+                                        <a href="#q{{question.number}}"><!--{{question.number}}--></a>
                                     </div>
                                 </li>
                             </template>
@@ -88,65 +88,68 @@
 
                     </div>
                     <div class="col-xs-10 exam-content flexible-container as-column">
-                       <template>
-                            <div id="disclaimer">
-                            </div>   
-                       </template>
-
-                        <!--div id="disclaimer">
-                            <h3>
-                                Dispõe de 90 minutos para realizar este teste.</br>
-                                Qualquer tentativa de fraude será punida com a eliminação desta prova.
-                            </h3>
-                        </div-->>
-                        <div id="question-body" class="flexible-container contained as-column">
-                            <div class="row flexible-container contained">
-                                <div class="col-xs-1">
-                                    <ul class="question-value">
-                                        <li class="question-item-wrapper">
+                       
+                        <div id="disclaimer">
+                        </div>   
+                       
+                        <template id="questions-template">
+                            <div id="q{{question.number}}" class="question-body flexible-container contained as-column">
+                                <div class="row flexible-container contained">
+                                    <div class="col-xs-1">
+                                        <div class="question-item-wrapper">
                                             <div class="small-circle ">
-                                                <a id="question-value">5v</a>
-                                            </div>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div class="col-xs-11 flexible-container contained as-column">
-                                    <div id="question-text" class="question-main-text">
-                                        <i class="fa fa-arrow-circle-right"></i> <!--Classifique as seguintes afirmações como verdadeiras ou falsas.-->
-                                    </div>
-                                    <div class="question-alineas flexible-container contained as-column" >
-                                        <ul class="nav nav-tabs">
-                                            <li class="alinea active">
-                                                <i class="work-item fa fa-check-square-o"></i>
-                                                <a data-toggle="tab" href="#home">3.1</a>
-                                            </li>
-                                            <li class="alinea">
-                                                <i class="work-item fa fa-square-o"></i>
-                                                <a data-toggle="tab" href="#menu1">3.2</a>
-                                            </li>
-                                            <li class="alinea">
-                                                <i class="work-item fa fa-square-o"></i>
-                                                <a data-toggle="tab" href="#menu2">3.3</a>
-                                            </li>
-                                        </ul>
-
-                                        <div class="tab-content flexible-container contained as-column">
-                                            <div id="home" class="flexible-container contained as-column tab-pane fade in active ">
-                                                <p><i class="fa fa-arrow-circle-right"></i> Some content.</p>
-                                                <textarea class="answer form-control contained" id="q1a1" placeholder="A sua resposta aqui..." ></textarea>
-                                            </div>
-                                            <div id="menu1" class="tab-pane fade">
-                                                
-                                                <p>Some content in menu 1.</p>
-                                            </div>
-                                            <div id="menu2" class="tab-pane fade">
-                                                <p>Some content in menu 2.</p>
+                                                <a id="question-value"><!--{{question.value}}--></a>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                            </div> 
-                        </div>
+                                    <div class="col-xs-11 flexible-container contained as-column">
+                                        <div class="question-main-text">
+                                            <i class="fa fa-arrow-circle-right"></i> <!--{{question.text}}-->
+                                        </div>
+                                        <div class="question-alineas flexible-container contained as-column" >
+                                            <ul class="nav nav-tabs">
+                                                <template id="alineas-template">
+                                                    <li class="alinea active">
+                                                        <i class="work-item fa fa-check-square-o"></i>
+                                                        <a data-toggle="tab" href="{{q1a1}}"><!--{{alinea.number}}--></a>
+                                                    </li>    
+                                                </template>
+                                                <!--li class="alinea active">
+                                                    <i class="work-item fa fa-check-square-o"></i>
+                                                    <a data-toggle="tab" href="#home">3.1</a>
+                                                </li>
+                                                <li class="alinea">
+                                                    <i class="work-item fa fa-square-o"></i>
+                                                    <a data-toggle="tab" href="#menu1">3.2</a>
+                                                </li>
+                                                <li class="alinea">
+                                                    <i class="work-item fa fa-square-o"></i>
+                                                    <a data-toggle="tab" href="#menu2">3.3</a>
+                                                </li-->
+                                            </ul>
+
+                                            <div class="tab-content flexible-container contained as-column">
+                                                <template>
+                                                    <div id="{{q1a1}}" class="flexible-container contained as-column tab-pane fade in active ">
+                                                        <p><i class="fa fa-arrow-circle-right"></i> <!--{{alinea.text}}--></p>
+                                                        <textarea class="answer form-control contained" id="{{answer-q1a1}}" placeholder="A sua resposta aqui..." ></textarea>
+                                                    </div>
+                                                </template>
+
+                                                <!--div id="menu1" class="tab-pane fade">
+                                                    
+                                                    <p>Some content in menu 1.</p>
+                                                </div>
+                                                <div id="menu2" class="tab-pane fade">
+                                                    <p>Some content in menu 2.</p>
+                                                </div-->
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div> 
+                            </div>
+                        </template>
+                        
 
                     </div>
                 </div>
