@@ -13,3 +13,10 @@ $(document).ready(function() {
     });
 
 });
+
+ipcRenderer.send('ready-to-render', 'true');
+
+ipcRenderer.on('render-content', (event, content) => {
+    var ui = new UI(content);
+    ui.render(3);
+});

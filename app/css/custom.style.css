@@ -84,11 +84,11 @@ main {
 }
 
 .circle:hover, .circle a:hover {
-  background: #9DBC8F;
+  background: #557049;
 }
 
 .circle.active {
-  background: #557049;
+  background: #9DBC8F;
 }
 
 .circle a {

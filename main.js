@@ -29,7 +29,7 @@ app.on('ready', ()=>{
 
     fs.readFile('./app/exam_samples/exam1.json', 'utf-8', (err, data) => {
         if (err) throw err;
-        exam.load(JSON.parse(data));
+        exam = Exam.loadFromString(data);
         exam.student.name = 'nuno';
         console.log(exam);
     })
@@ -38,6 +38,10 @@ app.on('ready', ()=>{
 
 });
 
+
+ipcMain.on('ready-to-render', (event, args)=>{
+    event.sender.send('render-content', exam);
+});
 
 //Inter-window communications
 ipcMain.on('start-sensing-internet', ()=>{

@@ -36,7 +36,7 @@ class Exam {
         this.url = '';
     }   
 
-    processQuestions(questions) {
+    _processQuestions(questions) {
         var Qs = new Array();
         var i;
         for(i = 0; i < questions.length; i++) {
@@ -46,7 +46,7 @@ class Exam {
             Q.text = questions[i].text;
             var alineas = questions[i].alineas; 
             if(alineas !== undefined) {
-                Q.alineas = this.processQuestions(alineas);
+                Q.alineas = this._processQuestions(alineas);
             }
             Qs.push(Q);
         } 
@@ -54,96 +54,38 @@ class Exam {
         return Qs;
     }
 
-    load(input){
-        var exam = input.exam;
-        this.id = exam.id;
-        this.teacher = exam.teacher;
-        this.date = exam.date;
+    static loadFromString(data){
+        var exam = new Exam();
+        var obj = JSON.parse(data).exam;
+        exam.id = obj.id;
+        exam.teacher = obj.teacher;
+        exam.date = obj.date;
+        exam.disclaimer = obj.disclaimer;
         
-        var Qs = exam.questions;
-        this.questions = this.processQuestions(Qs);
-        this.answers = new Array();
+        var Qs = obj.questions;
+        exam.questions = exam._processQuestions(Qs);
+        exam.answers = new Array();
+
+        return exam;
     }
 
-    
+    static loadFromExamObject(input) {
+        var exam = new Exam();
+        exam.student = input.student
+        exam.teacher = input.teacher;
+        exam.disclaimer = input.disclaimer;
+        exam.date = input.date;
+        exam.id = input.id;
+        exam.questions = input.questions;
+        exam.answers = input.answers;
+        exam.url = input.url;    
 
-    render(){}
+        return exam;
+    }
 
     formatPDF(){}
 
 
 }
-
-/*
-function Student() {
-    this.name = '';
-    this.number = -1;
-}
-
-function Answer() {
-    this.number = -1;
-    this.text = '';
-}
-
-function Question() {
-    this.number = -1;
-    this.text = '';
-    this.alineas = null //array of Question;
-    this.value = -1;
-}
-
-
-function Exam() {
-    this.student = new StudentCls();
-    this.teacher = '';
-    this.disclaimer = '';
-    this.date = '';
-    this.id = '';
-    this.questions = null; //array of questions;
-    this.answers = null; //array of answers;
-    this.url = '';
-}
-
-Exam.prototype.load = function (input) {
-    var exam = input.exam;
-    this.id = exam.id;
-    this.teacher = exam.teacher;
-    this.date = exam.date;
-    
-    var Qs = exam.questions;
-    this.questions = processQuestions(Qs);
-    this.answers = new Array();
-
-}
-
-
-function processQuestions(questions) {
-    var Qs = new Array();
-    var i;
-    for(i = 0; i < questions.length; i++) {
-        var Q = new Question();
-        Q.number = i+1;
-        Q.value = questions[i].value;
-        Q.text = questions[i].text;
-        var alineas = questions[i].alineas; 
-        if(alineas !== undefined) {
-            Q.alineas = processQuestions(alineas);
-        }
-        Qs.push(Q);
-    } 
-
-    return Qs;
-}
-
-
-Exam.prototype.render = function() {
-
-}
-
-Exam.prototype.formatPDF = function() {
-
-}
-*/
-
 
 exports.Exam = Exam;

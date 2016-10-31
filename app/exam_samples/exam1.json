@@ -3,7 +3,7 @@
         "id" : 1,
         "teacher" : "Pedro Henriques",
         "date" : "2 Novembro 2016",
-        "disclaimer": "Tem 90min para a realização deste exame!",
+        "disclaimer": "<h3>Tem 90min para a realização deste exame.<br/>Qualquer tentativa de fraude pode levar à eliminação do exame.</h3>",
         "questions" : [
             {
                 "value" : 5,
