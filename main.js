@@ -13,12 +13,30 @@ let exam = new Exam();
 
 //windows
 let win = null;
-let senson = null;
+let watchdog = null;
+let lockdown = null;
 
 
 function createMainWindow(){
-    win = new BrowserWindow({width:screen_w, height:screen_h, frame:false});
+    win = new BrowserWindow({
+        width:screen_w, 
+        height:screen_h, 
+        frame:false,
+        resizable:false,
+        movable:false,
+        minimizable:false,
+        maximazable:false,
+        show:false //wait for loading
+    });
     win.loadURL(renderer_dir+'/main.html');
+    win.once('ready-to-show', () => {
+        win.show();
+    })
+}
+
+function createInternetSensor() {
+    watchdog = new BrowserWindow({width:800, height:600, show:false});
+    watchdog.loadURL(renderer_dir+'/watchdog.html');
 }
 
 app.on('ready', ()=>{
@@ -26,6 +44,7 @@ app.on('ready', ()=>{
     screen_w = width;
     screen_h = height;
     createMainWindow();
+    createInternetSensor();
 
     fs.readFile('./app/exam_samples/exam1.json', 'utf-8', (err, data) => {
         if (err) throw err;
@@ -45,5 +64,34 @@ ipcMain.on('ready-to-render', (event, args)=>{
 
 //Inter-window communications
 ipcMain.on('start-sensing-internet', ()=>{
+    
+});
 
+ipcMain.on('internet-connected', ()=>{
+    lockdown = new BrowserWindow({
+            width:screen_w, 
+            height:screen_h, 
+            frame:false, 
+            parent:win, 
+            resizable:false,
+            movable:false,
+            minimizable:false,
+            maximazable:false,
+            alwaysOnTop:true,
+            closable:false,
+            backgroundColor:'#333'
+        });
+    lockdown.loadURL(renderer_dir + '/lockdown.html');
+
+    lockdown.on('blur', ()=>{
+        lockdown.focus();
+        app.focus();
+    });
+});
+
+ipcMain.on('internet-disconnected', ()=> {
+    if(lockdown !== null) {
+        lockdown.destroy();
+        lockdown = null;
+    }
 });
