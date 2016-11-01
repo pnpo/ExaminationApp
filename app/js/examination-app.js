@@ -28,6 +28,9 @@ class Exam {
     constructor(){
         this.student = new Student();
         this.teacher = '';
+        this.discipline = '';
+        this.type = '';
+        this.course = '';
         this.disclaimer = '';
         this.date = '';
         this.id = '';
@@ -58,6 +61,9 @@ class Exam {
         var exam = new Exam();
         var obj = JSON.parse(data).exam;
         exam.id = obj.id;
+        exam.discipline = obj.discipline;
+        exam.course = obj.course;
+        exam.type = obj.type;
         exam.teacher = obj.teacher;
         exam.date = obj.date;
         exam.disclaimer = obj.disclaimer;
@@ -76,6 +82,9 @@ class Exam {
         exam.disclaimer = input.disclaimer;
         exam.date = input.date;
         exam.id = input.id;
+        exam.discipline = obj.discipline;
+        exam.course = obj.course;
+        exam.type = obj.type;
         exam.questions = input.questions;
         exam.answers = input.answers;
         exam.url = input.url;    

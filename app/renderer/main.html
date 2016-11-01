@@ -127,8 +127,32 @@
         </script>
         <script src="../js/bootstrap.min.js"></script>
         <script>
-            const {UI} = require('../js/examination-app-ui.js');
+           
         </script>
         <script src="../js/main-code.js"></script>
+        <!--script src="../js/pdfmake.min.js"></script>
+        <script src="../js/vfs_fonts.js"></script-->
+        <!--script>
+            const PdfPrinter = require('pdfmake');
+            var fonts = {
+                Roboto: {
+                    normal: __dirname + '/../fonts/Roboto-Regular.ttf',
+                    bold: __dirname + '/../fonts/Roboto-Medium.ttf',
+                    italics: __dirname + '/../fonts/Roboto-Italic.ttf',
+                    bolditalics: __dirname + '/../fonts/Roboto-Italic.ttf'
+                }
+            };
+            var printer = new PdfPrinter(fonts);
+            var docDefinition = {
+                content: [
+                    'First paragraph',
+                    'Another paragraph, this time a little bit longer to make sure, this line will be divided into at least two lines'
+                ]
+            };
+             //pdfMake.createPdf(docDefinition).download('optionalName.pdf');
+            var pdfDoc = printer.createPdfKitDocument(docDefinition);
+            pdfDoc.pipe(printer.fs.createWriteStream('test.pdf'));
+            pdfDoc.end();
+        </script-->
     </body>
 </html>

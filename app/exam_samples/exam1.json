@@ -1,6 +1,10 @@
 {
     "exam": {
         "id" : 1,
+        "discipline": "Algoritmos e Estruturas de Dados (AED I - PL)",
+        "course" : "LEI - PL",
+        "type": "Avaliacao Continua",
+        "version": "A",
         "teacher" : "Pedro Henriques",
         "date" : "2 Novembro 2016",
         "disclaimer": "<h3>Tem 90min para a realização deste exame.<br/>Qualquer tentativa de fraude pode levar à eliminação do exame.</h3>",

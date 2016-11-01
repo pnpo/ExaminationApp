@@ -1,4 +1,6 @@
 const {Exam} = require('./examination-app.js');
+const PdfPrinter = require('pdfmake');
+
 
 let active_question = null;
 
@@ -165,4 +167,77 @@ function activateFillingVerification() {
 }
 
 
+
+
+
+
+// PDF generator handler
+class PDF {
+    
+    get fonts() {
+        return  {
+            Roboto: {
+                normal: __dirname + '/../fonts/Roboto-Regular.ttf',
+                bold: __dirname + '/../fonts/Roboto-Medium.ttf',
+                italics: __dirname + '/../fonts/Roboto-Italic.ttf',
+                bolditalics: __dirname + '/../fonts/Roboto-Italic.ttf'
+            }
+        };
+    }
+
+    get styles() {
+        return  {
+            header: {
+                fontSize: 14,
+			    bold: true
+            }, 
+            footer: {
+
+            }
+        }
+    }
+
+    constructor(ex) {
+        this.exam = Exam.loadFromExamObject(ex);   
+    }
+
+    render(ex) {
+        var contents = {
+                // a string or { width: number, height: number }
+                pageSize: 'A4',
+                // [left, top, right, bottom] or [horizontal, vertical] or just a number for equal margins
+                pageMargins: [ 40, 40, 40, 60 ],
+                content: [
+                    this.renderHeader('Av. Continua'),
+                ],
+                styles : this.styles
+                
+            };
+        var printer = new PdfPrinter(this.fonts);
+        var pdfDoc = printer.createPdfKitDocument(contents);
+        pdfDoc.pipe(printer.fs.createWriteStream('test.pdf'));
+        pdfDoc.end();
+    }
+
+
+    renderHeader(type/*, discipline, date, teacher, std_name, std_num*/) {
+        var header = { 
+            	text: 'Exame ' + type, style: ['header', {alignment:'center'}] 
+            }
+			/*stack: [
+				'Exame (' + date + ')',
+				{ text: 'Professor: ' + teacher, style: 'subheader' },
+                { text: 'Realizado por: ' + teacher, style: 'subheader' },
+			],
+			style: 'header'
+		},*/
+        return header;
+    }
+
+
+}
+
+
+
 exports.UI = UI;
+exports.PDF = PDF;

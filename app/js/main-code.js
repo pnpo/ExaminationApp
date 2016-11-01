@@ -1,4 +1,5 @@
 const {ipcRenderer} = require('electron');
+const {UI, PDF} = require('../js/examination-app-ui.js');
 
 $(document).ready(function() {
 
@@ -18,5 +19,7 @@ ipcRenderer.send('ready-to-render', 'true');
 
 ipcRenderer.on('render-content', (event, content) => {
     var ui = new UI(content);
-    ui.render(3);
+    ui.render();
+    var pdf = new PDF(content);
+    pdf.render();
 });

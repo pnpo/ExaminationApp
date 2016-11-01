@@ -10,6 +10,7 @@
   "license": "ISC",
   "devDependencies": {
     "electron-prebuilt": "^1.4.3",
-    "jquery": "^3.1.1"
+    "jquery": "^3.1.1",
+    "pdfmake": "^0.1.18"
   }
 }
