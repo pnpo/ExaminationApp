@@ -82,9 +82,9 @@ class Exam {
         exam.disclaimer = input.disclaimer;
         exam.date = input.date;
         exam.id = input.id;
-        exam.discipline = obj.discipline;
-        exam.course = obj.course;
-        exam.type = obj.type;
+        exam.discipline = input.discipline;
+        exam.course = input.course;
+        exam.type = input.type;
         exam.questions = input.questions;
         exam.answers = input.answers;
         exam.url = input.url;    

@@ -191,9 +191,48 @@ class PDF {
                 fontSize: 14,
 			    bold: true
             }, 
-            footer: {
-
-            }
+             header_table: {
+                fontSize: 10,
+                margin: [0,5,0,0],
+            }, 
+            answer: {
+                fontSize: 10,
+                margin: [15,5,0,5],
+                color: '#999'
+            },
+            answer_fixed: {
+                bold: true,
+                fontSize: 10,
+                margin: [15, 0, 0 ,0]
+            },
+            question: {
+                margin: [0,20,0,0]
+            },
+            question_no: {
+                fontSize: 12,
+                bold:true,
+            },
+            question_text: {
+                fontSize: 10,
+                italics:true,
+                margin: [15,5,0,5]
+            },
+            alinea:{
+                margin:[25, 5, 0, 5]
+            },
+            alinea_no:{
+                bold:true
+            },
+            alinea_answer: {
+                margin:[35,5,0,5],
+                fontSize:10,
+                color:'#999'
+            },
+            answer_fixed_alinea: {
+                bold: true,
+                fontSize: 10,
+                margin: [35, 0, 0 ,0]
+            },
         }
     }
 
@@ -202,13 +241,23 @@ class PDF {
     }
 
     render(ex) {
+        var A1 = {value:2.5, number:1, text:'Um cao e um mamifero'};
+        var A2 = {value:2.5, number:2, text:'Um peixe e um reptil'};
+        
+        var A1_a = {number:1, text:'Verdadeiro'};
+        var A2_a = {number:2, text:'Falso'};
+
         var contents = {
                 // a string or { width: number, height: number }
                 pageSize: 'A4',
                 // [left, top, right, bottom] or [horizontal, vertical] or just a number for equal margins
                 pageMargins: [ 40, 40, 40, 60 ],
                 content: [
-                    this.renderHeader('Av. Continua'),
+                    this.renderHeader('Av. Continua', 'Algoritmos e Estruturas de Dados (AED I - PL)', 
+                                        'LESI - PL', '2 de Nov de 2016','Nuno Oliveira','Aluno Teste', '43549'),
+                  this.renderQuestionAndAnswerWithoutAlineas('1', 'Quantas patas ha num pateiro de 6 patos?','5', '12 ou 0, dependendo se nos estamos a referir a patas dos patos ou ao animal pata (fem. do pato).\nOu isso ou outra coisa qualquer.'),                  
+                  this.renderQuestionAndAnswerWithAlineas('2', 'Classifique as seguintes afirmações como verdadeiras ou falsas','5',
+                                            [A1, A2], [A1_a, A2_a])  
                 ],
                 styles : this.styles
                 
@@ -220,20 +269,85 @@ class PDF {
     }
 
 
-    renderHeader(type/*, discipline, date, teacher, std_name, std_num*/) {
-        var header = { 
-            	text: 'Exame ' + type, style: ['header', {alignment:'center'}] 
-            }
-			/*stack: [
-				'Exame (' + date + ')',
-				{ text: 'Professor: ' + teacher, style: 'subheader' },
-                { text: 'Realizado por: ' + teacher, style: 'subheader' },
-			],
-			style: 'header'
-		},*/
+    renderHeader(type, discipline, course, date, teacher, std_name, std_num) {
+        var header = [
+            { text: 'Exame ' + type, style: ['header', {alignment:'center'}] },
+            { style: 'header_table',
+                table: {
+                    widths: [ 'auto', '*' ],
+                    body: [
+                        [ 
+                            { text: [ { text: 'Disciplina: ', bold:true },  discipline ] }, 
+                            { text: [ { text: 'Curso: ', bold:true }, course ] },
+                        ],
+                        [ 
+                            { text: [ { text: 'Data: ', bold:true },  date ] }, 
+                            { text: [ { text: 'Professor: ', bold:true }, teacher ] },
+                        ],
+                        [ 
+                            { text: [ { text: 'Aluno: ', bold:true },  std_name ] }, 
+                            { text: [ { text: 'Numero: ', bold:true }, std_num] },
+                        ]
+					]
+				},
+                layout: 'noBorders'
+			}, 
+        ]
         return header;
     }
 
+
+    renderQuestionAndAnswerWithoutAlineas(number, Q_text, value, answer) {
+        var simple_Q = [
+            { text: [ { text : 'Questão ' + number, style:'question_no'}, {text: '  ('+ value +' valores)',fontSize:8}], style:'question' },
+            {text: Q_text, style:'question_text'},
+            {text: 'Resposta: ', style:'answer_fixed'},
+            { style: 'answer',
+                table: {
+                    widths: [ '*' ],
+                    body: [
+                        [ answer ]
+					]
+				}
+			} 
+        ];
+
+        return simple_Q;
+    }
+
+
+    renderQuestionAndAnswerWithAlineas(number, Q_text, value, alineas, answers) {
+        var QandAlineas = [
+            { text: [ { text : 'Questão ' + number, style:'question_no'}, {text: '  ('+ value +' valores)',fontSize:8}], style:'question' },
+            {text: Q_text, style:'question_text'},
+            this.renderAlineasAndAnswers(alineas, answers)
+        ];
+
+        
+        
+        return QandAlineas;
+    }
+
+    renderAlineasAndAnswers(alineas, answers) {
+        var rendered = [];
+        for(var i = 0; i < alineas.length; i++) {
+            var alinea = alineas[i];
+            var alinea_answer = [
+                { text: [ { text : ''+alinea.number , style:'alinea_no'}, {text: '('+ alinea.value +' v)',fontSize:8},  {text: ' -- ' + alinea.text, style:'question_text'} ], style:'alinea' },
+                {text: 'Resposta: ', style:'answer_fixed_alinea'},
+                { style: 'alinea_answer',
+                    table: {
+                        widths: [ '*' ],
+                        body: [
+                            [ answers[i].text ]
+                        ]
+                    }
+                }
+            ];
+            rendered.push(alinea_answer);
+        }
+        return rendered;
+    }
 
 }
 
