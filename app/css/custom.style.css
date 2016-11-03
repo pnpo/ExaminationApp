@@ -33,7 +33,32 @@ main {
 #login_page {
     margin: 0 auto;
     text-align: center;
+    padding-top: 30px;
 }
+
+.form-wrapper {
+  width:45%;
+  margin: 70px auto;
+}
+
+.input-group {
+  margin-bottom : 15px;
+}
+
+.form-button {
+  background-color:#555; 
+  color: #eee;
+}
+
+.form-button:hover {
+  background-color:#557049;
+  font-weight: bold; 
+}
+
+.row .form-control {
+  margin:0 auto;
+}
+
 
 #exam_page {
   height:100%;

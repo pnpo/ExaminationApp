@@ -44,7 +44,7 @@ app.on('ready', ()=>{
     screen_w = width;
     screen_h = height;
     createMainWindow();
-    createInternetSensor();
+    //createInternetSensor();
 
     fs.readFile('./app/exam_samples/exam1.json', 'utf-8', (err, data) => {
         if (err) throw err;

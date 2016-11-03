@@ -18,20 +18,59 @@
         </header>
        
         <main>
-            <div id="login_page" hidden>
+            <div id="login_page">
                 <h1>
-                    Benvindo ao seu teste!
+                    Benvindo ao seu Exame!
                 </h1>
                 <p>
                     Introduza o seu nome e número. Indique ainda as restantes credenciais conforme fornecido pelo seu professor.
                 </p>
-                <form class="">
-                    <input id="tb_name" type="text" placeholder="Introduza o seu nome" required/>
-                    <input id="tb_number" type="text" placeholder="Introduza o seu número de aluno" required/>
-                    <input id="tb_server" type="text" placeholder="http://..." required/>
-                    <input id="tb_eid" type="text" placeholder="Introduza o identificador do exame" required/>
-                    <button id="btn_enter">Entrar</button>
-                </form>
+                <div class="form-wrapper">
+                    <form data-toggle="validator" role="form">
+                        <div class="form-group">
+                            <div class="form-group has-feedback">
+                                <div class="input-group input-group-sm">
+                                    <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                                    <input id="tb_name" class="form-control" type="text" placeholder="Introduza o seu nome" pattern="^([A-Z][a-z]+\s*)+$" required/>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group has-feedback">
+                                <div class="input-group input-group-sm">
+                                    <span class="input-group-addon"><i class="fa fa-hashtag"></i></span>
+                                    <input id="tb_number" class="form-control" type="text" placeholder="Introduza o seu número de aluno" pattern="^[0-9]{3,}$" required/>
+                                </div>
+                            </div>
+
+                            <div class="form-group has-feedback">
+                                <div class="input-group input-group-sm">
+                                    <span class="input-group-addon"><i class="fa fa-globe"></i></span>
+                                    <input id="tb_server" class="form-control" type="url" placeholder="http://..." required/>
+                                </div>
+                            </div>
+
+                            <div class="form-group has-feedback">
+                                <div class="input-group input-group-sm">
+                                    <span class="input-group-addon"><i class="fa fa-tag"></i></span>
+                                    <input id="tb_eid" class="form-control" type="text" placeholder="Introduza o identificador do exame" pattern="^[0-9]+$"required/>
+                                </div>
+                            </div>
+
+                            <div class="form-group has-feedback">
+                                <div class="input-group input-group-sm">
+                                    <span class="input-group-addon"><i class="fa fa-folder-open"></i></span>
+                                    <input id="tb_path" class="form-control" type="input" placeholder="Salvar exame em..." required/>
+                                    <span class="input-group-btn">
+                                        <button id="btn_dir_chooser" class="btn btn-default" type="button">Escolher</button>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>    
+                        
+                        <button id="btn_enter" class="form-control form-button" >Entrar</button>
+                        
+                    </form>
+                </div>
             </div> <!-- End login page -->
 
             <div id="loading_page" hidden>
@@ -39,7 +78,7 @@
                 <img src="../images/loading.gif" alt="A carregar o exame" />
             </div> <!--End loading page-->
 
-            <div id="exam_page">
+            <div id="exam_page" hidden>
                 
                 <div class="row">
                     <div class="col-xs-2 questions">  
@@ -124,11 +163,9 @@
 
         <script>
             window.$=window.jQuery=require('jquery');
+            const {Validator} = require('bootstrap-validator');
         </script>
         <script src="../js/bootstrap.min.js"></script>
-        <script>
-           
-        </script>
         <script src="../js/main-code.js"></script>
         
     </body>
