@@ -1,6 +1,7 @@
 const {ipcRenderer} = require('electron');
 const {dialog} = require('electron').remote;
 const {UI, PDF} = require('../js/examination-app-ui.js');
+const fs = require('fs');
 
 $(document).ready(function() {
 
@@ -16,8 +17,20 @@ $(document).ready(function() {
         var number = $('#tb_number').val();
         var url = $('#tb_server').val();
         var eid = $('#tb_eid').val();
-        ipcRenderer.sendAsync('identification_submitted', name, number, url, eid);
-
+        var path = $('#tb_path').val();
+        try{
+            var stats = fs.statSync(path); 
+            if(stats.isDirectory()) {
+                ipcRenderer.send('identification_submitted', name, number, url, eid, path);
+            }
+            else {
+                $('#tb_path').val(path + '???').focus();
+            }   
+        }
+        catch (err){
+            $('#tb_path').val(path + '???').focus();
+        }
+        
         return false;
     });
 
