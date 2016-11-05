@@ -24,11 +24,13 @@ $(document).ready(function() {
                 ipcRenderer.send('identification_submitted', name, number, url, eid, path);
             }
             else {
-                $('#tb_path').val(path + '???').focus();
+                $('#tb_path').val().focus();
+                $('#btn_enter').click();
             }   
         }
         catch (err){
-            $('#tb_path').val(path + '???').focus();
+            $('#tb_path').val("").focus();
+            $('#btn_enter').click();
         }
         
         return false;
