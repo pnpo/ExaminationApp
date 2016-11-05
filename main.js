@@ -10,6 +10,7 @@ const {Exam} = require('./app/js/examination-app.js');
 
 let screen_w, screen_h;
 let exam = new Exam();
+let exam_dir_path;
 
 //windows
 let win = null;
@@ -44,27 +45,46 @@ app.on('ready', ()=>{
     screen_w = width;
     screen_h = height;
     createMainWindow();
-    //createInternetSensor();
+    
+});
+
+
+
+//Inter-window communications
+
+//login OK
+ipcMain.once('ready-to-render', (event, name, number, url, eid, path)=>{
+    // exam.student.name = name;
+    // exam.student.number = number;
+    // exam.url = url;
+    // exam.id = eid;
+    // exam_dir_path = path;
+
+    //access exam from DB
+    //getExamFromServer(url, eid);
 
     fs.readFile('./app/exam_samples/exam1.json', 'utf-8', (err, data) => {
         if (err) throw err;
         exam = Exam.loadFromString(data);
-        exam.student.name = 'nuno';
+        exam.student.name = name;
+        exam.student.number = number;
+        exam.url = url;
+        exam.id = eid;
         console.log(exam);
     })
 
-    
-
-});
-
-
-ipcMain.on('ready-to-render', (event, args)=>{
     event.sender.send('render-content', exam);
 });
 
-//Inter-window communications
-ipcMain.on('start-sensing-internet', ()=>{
-    
+
+ipcMain.once('ready-to-start', (event)=>{
+    event.sender.send('start-exam');
+});
+
+
+//sensing the internet communications
+ipcMain.once('start-sensing-internet', ()=>{
+    createInternetSensor();
 });
 
 ipcMain.on('internet-connected', ()=>{
@@ -95,3 +115,7 @@ ipcMain.on('internet-disconnected', ()=> {
         lockdown = null;
     }
 });
+
+
+//auxiliary functions
+getExamFromServer(url, eid);

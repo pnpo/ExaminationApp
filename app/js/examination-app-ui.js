@@ -9,7 +9,7 @@ class UI {
         this.exam = Exam.loadFromExamObject(ex);
     }
 
-    render() {
+    render(callback) {
         var Q_size = this.exam.questions.length;
         var Qs = this.exam.questions;
         //quesitons numeration
@@ -25,6 +25,8 @@ class UI {
         activateQuestionClickEvents();
 
         activateFillingVerification();
+
+        callback();
     }
 }
 

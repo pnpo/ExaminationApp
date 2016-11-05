@@ -3,6 +3,8 @@ const {dialog} = require('electron').remote;
 const {UI, PDF} = require('../js/examination-app-ui.js');
 const fs = require('fs');
 
+let current_page = '#login_page';
+
 $(document).ready(function() {
 
     $('#btn_dir_chooser').click(function(){
@@ -18,10 +20,11 @@ $(document).ready(function() {
         var url = $('#tb_server').val();
         var eid = $('#tb_eid').val();
         var path = $('#tb_path').val();
-        try{
+        try {
             var stats = fs.statSync(path); 
             if(stats.isDirectory()) {
-                ipcRenderer.send('identification_submitted', name, number, url, eid, path);
+                ipcRenderer.send('ready-to-render', name, number, url, eid, path);
+                changeToPage('#loading_page') ;
             }
             else {
                 $('#tb_path').val().focus();
@@ -38,11 +41,23 @@ $(document).ready(function() {
 
 });
 
-ipcRenderer.send('ready-to-render', 'true');
+
+function changeToPage(page_id) {
+    $(current_page).hide();
+    $(page_id).show();
+    current_page = page_id;
+}
 
 ipcRenderer.on('render-content', (event, content) => {
     var ui = new UI(content);
-    ui.render();
+    ui.render(()=>{
+        ipcRenderer.send('ready-to-start');
+    });
     var pdf = new PDF(content);
     pdf.render();
 });
+
+
+ipcRenderer.on('start-exam', (event)=>{
+    changeToPage('#exam-page');
+})
