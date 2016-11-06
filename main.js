@@ -53,7 +53,7 @@ app.on('ready', ()=>{
 //Inter-window communications
 
 //login OK
-ipcMain.once('ready-to-render', (event, name, number, url, eid, path)=>{
+ipcMain.on('ready-to-render', (event, name, number, url, eid, path)=>{
     // exam.student.name = name;
     // exam.student.number = number;
     // exam.url = url;
@@ -71,19 +71,20 @@ ipcMain.once('ready-to-render', (event, name, number, url, eid, path)=>{
         exam.url = url;
         exam.id = eid;
         console.log(exam);
+        event.sender.send('render-content', exam);
     })
 
-    event.sender.send('render-content', exam);
+    
 });
 
 
-ipcMain.once('ready-to-start', (event)=>{
+ipcMain.on('ready-to-start', (event)=>{
     event.sender.send('start-exam');
 });
 
 
 //sensing the internet communications
-ipcMain.once('start-sensing-internet', ()=>{
+ipcMain.on('start-sensing-internet', ()=>{
     createInternetSensor();
 });
 
@@ -118,4 +119,6 @@ ipcMain.on('internet-disconnected', ()=> {
 
 
 //auxiliary functions
-getExamFromServer(url, eid);
+function getExamFromServer(url, eid) {
+
+}

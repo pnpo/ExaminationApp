@@ -22,44 +22,41 @@
                 <h1>
                     Benvindo ao seu Exame!
                 </h1>
-                <p>
-                    Introduza o seu nome e número. Indique ainda as restantes credenciais conforme fornecido pelo seu professor.
-                </p>
                 <div class="form-wrapper">
                     <form data-toggle="validator" role="form">
                         <div class="form-group">
                             <div class="form-group has-feedback">
                                 <div class="input-group input-group-sm">
                                     <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                                    <input id="tb_name" class="form-control" type="text" placeholder="Introduza o seu nome" pattern="^([A-Z][a-z]+\s*)+$" required/>
+                                    <input id="tb_name" class="form-control" type="text" placeholder="Introduza o seu nome" pattern="^([A-Z][a-z]+\s*)+$" required value="Nuno"/>
                                 </div>
                             </div>
                             
                             <div class="form-group has-feedback">
                                 <div class="input-group input-group-sm">
                                     <span class="input-group-addon"><i class="fa fa-hashtag"></i></span>
-                                    <input id="tb_number" class="form-control" type="text" placeholder="Introduza o seu número de aluno" pattern="^[0-9]{3,}$" required/>
+                                    <input id="tb_number" class="form-control" type="text" placeholder="Introduza o seu número de aluno" pattern="^[0-9]{3,}$" required value="123"/>
                                 </div>
                             </div>
 
                             <div class="form-group has-feedback">
                                 <div class="input-group input-group-sm">
                                     <span class="input-group-addon"><i class="fa fa-globe"></i></span>
-                                    <input id="tb_server" class="form-control" type="url" placeholder="http://..." required/>
+                                    <input id="tb_server" class="form-control" type="url" placeholder="http://..." required value="http://localhost"/>
                                 </div>
                             </div>
 
                             <div class="form-group has-feedback">
                                 <div class="input-group input-group-sm">
                                     <span class="input-group-addon"><i class="fa fa-tag"></i></span>
-                                    <input id="tb_eid" class="form-control" type="text" placeholder="Introduza o identificador do exame" pattern="^[0-9]+$"required/>
+                                    <input id="tb_eid" class="form-control" type="text" placeholder="Introduza o identificador do exame" pattern="^[0-9]+$"required value="1"/>
                                 </div>
                             </div>
 
                             <div class="form-group has-feedback">
                                 <div class="input-group input-group-sm">
                                     <span class="input-group-addon"><i class="fa fa-folder-open"></i></span>
-                                    <input id="tb_path" class="form-control" type="input" placeholder="Salvar exame em..." required/>
+                                    <input id="tb_path" class="form-control" type="input" placeholder="Salvar exame em..." required value="/Users/nunooliveira/Desktop/Exame1"/>
                                     <span class="input-group-btn">
                                         <button id="btn_dir_chooser" class="btn btn-default" type="button">Escolher</button>
                                     </span>
@@ -74,8 +71,18 @@
             </div> <!-- End login page -->
 
             <div id="loading_page" hidden>
-                <h1>A carregar o exame...</h1>
-                <img src="../images/loading.gif" alt="A carregar o exame" />
+                <div id="loading-message">
+                    <i class="fa fa-spinner fa-spin fa-lg fa-fw"></i>
+                    <span class"">a carregar exame...</span>
+                </div>
+                <div id="internet-advise" hidden>
+                    <p>O seu exame está pronto!</p>
+                    <p><b>Antes de iniciar, desligue o acesso à internet!</b></p>
+                    <div class='good-luck'><h3>Boa Sorte</h3></div>
+                    <a id="btn_start" class="button-start" href="#"><i class="fa fa-chevron-circle-right fa-3x"></i></a>
+                </div>
+
+                <!--img src="../images/loading.gif" alt="A carregar o exame" /-->
             </div> <!--End loading page-->
 
             <div id="exam_page" hidden>

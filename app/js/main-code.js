@@ -39,6 +39,13 @@ $(document).ready(function() {
         return false;
     });
 
+
+    $('#btn_start').click(function(){
+            ipcRenderer.send('start-sensing-internet');
+            ipcRenderer.send('ready-to-start');
+            return false;
+        });
+
 });
 
 
@@ -51,13 +58,14 @@ function changeToPage(page_id) {
 ipcRenderer.on('render-content', (event, content) => {
     var ui = new UI(content);
     ui.render(()=>{
-        ipcRenderer.send('ready-to-start');
+        $('#loading-message').hide();
+        $('#internet-advise').show();
     });
-    var pdf = new PDF(content);
-    pdf.render();
+    //var pdf = new PDF(content);
+    //pdf.render();
 });
 
 
 ipcRenderer.on('start-exam', (event)=>{
-    changeToPage('#exam-page');
+    changeToPage('#exam_page');
 })

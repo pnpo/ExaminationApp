@@ -60,6 +60,41 @@ main {
 }
 
 
+
+#loading_page {
+  color:#555;
+  font-weight: bold; 
+  font-size: 12pt;
+  padding-top:20%;
+}
+
+#internet-advise {
+  font-weight: normal; 
+}
+
+#internet-advise.form-button {
+  font-weight: normal; 
+}
+
+#internet-advise b {
+  color:darkorange; 
+}
+
+.good-luck {
+  color: #9DBC8F;
+  font-weight: bold; 
+}
+
+a.button-start {
+  text-decoration: none;
+  color:#555;
+}
+
+a.button-start:hover {
+  text-decoration: none;
+  color:#557049;
+}
+
 #exam_page {
   height:100%;
 }
