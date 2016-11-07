@@ -41,6 +41,8 @@ main {
     margin: 0 auto;
     text-align: center;
     padding-top: 30px;
+    background-color: #eee;
+    height:100%;
 }
 
 .form-wrapper {
@@ -73,6 +75,8 @@ main {
   font-weight: bold; 
   font-size: 12pt;
   padding-top:20%;
+  background-color: #eee;
+  height:100%;
 }
 
 #internet-advise {
