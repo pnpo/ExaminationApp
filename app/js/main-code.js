@@ -1,6 +1,6 @@
 const {ipcRenderer} = require('electron');
 const {dialog} = require('electron').remote;
-const {UI, PDF} = require('../js/examination-app-ui.js');
+const {UI, PDF, Timer} = require('../js/examination-app-ui.js');
 const fs = require('fs');
 
 let current_page = '#login_page';
@@ -41,7 +41,7 @@ $(document).ready(function() {
 
 
     $('#btn_start').click(function(){
-            ipcRenderer.send('start-sensing-internet');
+            //ipcRenderer.send('start-sensing-internet');
             ipcRenderer.send('ready-to-start');
             return false;
         });
@@ -68,4 +68,11 @@ ipcRenderer.on('render-content', (event, content) => {
 
 ipcRenderer.on('start-exam', (event)=>{
     changeToPage('#exam_page');
-})
+    var timer = new Timer('#exam_elapsed', {sep_hm:'h ', sep_ms:'min ', sep_sms:'s'});
+    timer.start();
+});
+
+
+
+
+

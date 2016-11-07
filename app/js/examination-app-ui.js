@@ -3,6 +3,8 @@ const PdfPrinter = require('pdfmake');
 
 
 let active_question = null;
+const monthsPT = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Mail', 'Junho',
+                    'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'];
 
 class UI {
     constructor(ex) {
@@ -12,6 +14,9 @@ class UI {
     render(callback) {
         var Q_size = this.exam.questions.length;
         var Qs = this.exam.questions;
+        //header information
+        renderHeader(this.exam.course, this.exam.discipline, this.exam.student.name, 
+                        this.exam.student.number,this.exam.teacher, this.exam.type);
         //quesitons numeration
         renderQuestionNumbers(Q_size);
         //disclaimer
@@ -19,15 +24,25 @@ class UI {
         disclaimer.innerHTML = this.exam.disclaimer;
         //questions body
         renderAllQuestions(Qs, Q_size);
-
+        //hide all questions
         hideAllQuestions();
-
+        //wire questions and clicks
         activateQuestionClickEvents();
-
+        //wire verification of filled questions
         activateFillingVerification();
-
+        //run a success callback
         callback();
     }
+}
+
+function renderHeader(course, disc, std_name, std_num, teacher, type) {
+    $('#exam_type').html(type);
+    $('#exam_disc_course').html('<b>' + disc + ' (' + course + ')</b>');
+    var now = new Date();
+    $('#exam_date').html(now.getDate() + ' de ' + monthsPT[now.getMonth()] + ' de ' + now.getFullYear() );
+    $('#exam_teacher').html(teacher);
+    $('#exam_student').html(std_name + ' (' + std_num + ')');
+    $('#exam_elapsed').html('00h 00min 00s');
 }
 
 function renderQuestionNumbers(n){
@@ -355,5 +370,40 @@ class PDF {
 
 
 
+class Timer {
+    
+    get default() {
+        return {
+            sep_hm : ':',
+            sep_ms : ':',
+            sep_sms: ':'
+        }
+    }
+
+    constructor(place_id, opts) {
+        this.placeholder = place_id;
+        this.elapsed = 0;
+        this.options = opts || this.default;
+    }
+
+    start() {
+        var self = this;
+        setInterval(function(){
+            var sec = self.pad(++self.elapsed % 60);
+            var min = self.pad(parseInt(self.elapsed/60,10));
+            var hrs = self.pad(parseInt(self.elapsed/3600,10));
+            var html = hrs + self.options.sep_hm + min + self.options.sep_ms + sec + self.options.sep_sms;
+            $(self.placeholder).html(html);
+        }, 1000);
+    }
+    
+    pad(val) {
+        return val > 9 ? val : '0' + val;
+    }
+    
+}
+
+
 exports.UI = UI;
 exports.PDF = PDF;
+exports.Timer = Timer;
