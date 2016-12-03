@@ -94,6 +94,7 @@ ipcMain.on('start-sensing-internet', ()=>{
     createInternetSensor();
 });
 
+//when internet is connected
 ipcMain.on('internet-connected', ()=>{
     lockdown = new BrowserWindow({
             width:screen_w, 
@@ -109,12 +110,16 @@ ipcMain.on('internet-connected', ()=>{
             backgroundColor:'#333'
         });
     lockdown.loadURL(renderer_dir + '/lockdown.html');
-
+    
+    //blame the student for picking on internet!
+    blameStudent(exam.url,exam.student.name,exam.student.number);
+    
     lockdown.on('blur', ()=>{
         lockdown.focus();
         app.focus();
     });
 });
+
 
 ipcMain.on('internet-disconnected', ()=> {
     if(lockdown !== null) {
@@ -122,6 +127,10 @@ ipcMain.on('internet-disconnected', ()=> {
         lockdown = null;
     }
 });
+
+
+
+
 
 
 //auxiliary functions
@@ -154,4 +163,22 @@ function registerUser(url, std_name, std_number, callback) {
             callback(error,false);
             return;
         });
+}
+
+
+function blameStudent(url, std_name, std_number) {
+    request.post(
+        url + '/blame_student.php',
+        {form:{
+            name:std_name,
+            number:std_number    
+        }},
+        function(error,response, data) {
+            if(!error && response.statusCode == 200) {
+                return data.blames_count;
+            }
+            console.log(error);
+            return;
+        }
+    )
 }
