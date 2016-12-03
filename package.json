@@ -9,9 +9,11 @@
   "author": "Nuno Oliveira",
   "license": "ISC",
   "devDependencies": {
+    "async": "^2.1.4",
     "bootstrap-validator": "^0.11.5",
     "electron-prebuilt": "^1.4.3",
     "jquery": "^3.1.1",
-    "pdfmake": "^0.1.18"
+    "pdfmake": "^0.1.18",
+    "request": "^2.79.0"
   }
 }
