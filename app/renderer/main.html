@@ -108,19 +108,32 @@
 
             <div id="exam_page" hidden>
                 
-                <div class="row">
+                <div class="row side-panel">
                     <div class="col-xs-2 questions">  
-                        <h1>Questões</h1>
-                        <ul id="questions-placeholder">
-                            <template id="question-numbers-template">
-                                <li class="question-item-wrapper">
-                                    <div class="question-number circle">
-                                        <a href="#q{{question.number}}">{{question.number}}</a>
-                                    </div>
-                                </li>
-                            </template>
-                        </ul>
-
+                        <div class="row">
+                            <div class="col-xs-4 icons">
+                                <a href="#" title="Repor progresso do exame"><i class="fa fa-folder-open-o"></i></a>
+                            </div>
+                            <div class="col-xs-4 icons">
+                                <a href="#" title="Salvar progresso do exame"><i class="fa fa-save"></i></a>
+                            </div>
+                            <div class="col-xs-4 icons">
+                                <a href="#" title="Exportar exame (pdf)"><i class="fa fa-file-pdf-o"></i></a>
+                            </div>
+                        </div>
+                        <div class="row">
+                        
+                            <h1>Questões</h1>
+                            <ul id="questions-placeholder">
+                                <template id="question-numbers-template">
+                                    <li class="question-item-wrapper">
+                                        <div class="question-number circle">
+                                            <a href="#q{{question.number}}">{{question.number}}</a>
+                                        </div>
+                                    </li>
+                                </template>
+                            </ul>
+                        </div>
                     </div>
                     <div id="exam-content" class="col-xs-10 exam-content flexible-container as-column">
                        

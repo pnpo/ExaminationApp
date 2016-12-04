@@ -110,7 +110,7 @@ a.button-start:hover {
   height:100%;
 }
 
-.row {
+.side-panel {
   width:100%;
   margin: 0;
   height: 100%;
@@ -205,6 +205,17 @@ a.button-start:hover {
 }
 
 
+.icons {
+  padding-top:0px;
+}
+
+.icons a {
+  color : #eee;
+}
+
+.icons a:hover {
+  color:#9DBC8F;
+}
 
 
 .exam-content {
