@@ -41,11 +41,24 @@ $(document).ready(function() {
 
 
     $('#btn_start').click(function(){
-            //ipcRenderer.send('start-sensing-internet');
-            ipcRenderer.send('ready-to-start');
-            return false;
-        });
+        //ipcRenderer.send('start-sensing-internet');
+        ipcRenderer.send('ready-to-start');
+        return false;
+    });
 
+    $('#icon-save').click(function(){
+        ipcRenderer.send('save-exame-content');
+        return false;
+    });
+
+    $('#icon-open').click(function(){
+        ipcRenderer.send('open-exame-from-file');
+    });
+
+    $('#icon-export').click(function(){
+        ipcRenderer.send('export-exam-to-pdf');
+    });
+    
 });
 
 
