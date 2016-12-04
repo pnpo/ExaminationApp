@@ -1,6 +1,7 @@
 const {ipcRenderer} = require('electron');
 const {dialog} = require('electron').remote;
-const {UI, PDF, Timer} = require('../js/examination-app-ui.js');
+const {UI, Timer} = require('../js/examination-app-ui.js');
+const {Answer} = require('../js/examination-app.js');
 const fs = require('fs');
 
 let current_page = '#login_page';
@@ -47,19 +48,38 @@ $(document).ready(function() {
     });
 
     $('#icon-save').click(function(){
-        ipcRenderer.send('save-exame-content');
+        //ipcRenderer.send('save-exame-content');
+        alert('save');
         return false;
     });
 
     $('#icon-open').click(function(){
-        ipcRenderer.send('open-exame-from-file');
+        //ipcRenderer.send('open-exame-from-file');
+        alert('open');
+        return false;
     });
 
     $('#icon-export').click(function(){
-        ipcRenderer.send('export-exam-to-pdf');
+        alert('export');
+        ipcRenderer.send('export-exame-to-pdf', getAnswers());
     });
-    
+
 });
+
+
+function getAnswers() {
+    var answers = [];
+    $('.answer').each(function(){
+        var ans = new Answer();
+        ans.text = $(this).val();
+        var re = /answer-q(\d+)a(\d+)/g;
+        var numbers = re.exec(this.id);
+        ans.qnum = numbers[1];
+        ans.anum = numbers[2];
+        answers.push(ans);
+    });
+    return answers;
+}
 
 
 function changeToPage(page_id) {

@@ -9,7 +9,8 @@ class Student {
 
 class Answer {
     constructor(){
-        this.number = -1;
+        this.anum = -1; //alinea number
+        this.qnum = -1; //question number
         this.text = '';
     }
 }
@@ -97,4 +98,6 @@ class Exam {
 
 }
 
+exports.Answer = Answer;
 exports.Exam = Exam;
+

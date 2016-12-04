@@ -6,6 +6,7 @@ const electron = require('electron');
 const{app, BrowserWindow, ipcMain} = electron;
 
 const {Exam} = require('./app/js/examination-app.js'); 
+const {PDF} = require('./app/js/examination-app-ui.js');
 
 const request = require('request');
 const async = require('async');
@@ -126,6 +127,13 @@ ipcMain.on('internet-disconnected', ()=> {
         lockdown.destroy();
         lockdown = null;
     }
+});
+
+
+ipcMain.on('export-exame-to-pdf', (event, answers)=>{
+    exam.answers = answers;
+    var pdf = new PDF(exam);
+    pdf.render(exam);
 });
 
 
