@@ -257,7 +257,7 @@ class PDF {
         this.exam = Exam.loadFromExamObject(ex);   
     }
 
-    render(ex) {
+    render() {
         var A1 = {value:2.5, number:1, text:'Um cao e um mamifero'};
         var A2 = {value:2.5, number:2, text:'Um peixe e um reptil'};
         
@@ -270,8 +270,9 @@ class PDF {
                 // [left, top, right, bottom] or [horizontal, vertical] or just a number for equal margins
                 pageMargins: [ 40, 40, 40, 60 ],
                 content: [
-                    this.renderHeader('Av. Continua', 'Algoritmos e Estruturas de Dados (AED I - PL)', 
-                                        'LESI - PL', '2 de Nov de 2016','Nuno Oliveira','Aluno Teste', '43549'),
+                    this.renderHeader(this.exam.type,this.exam.discipline,this.exam.course,
+                                        this.exam.date,this.exam.teacher,this.exam.student.name,
+                                        this.exam.student.number),
                   this.renderQuestionAndAnswerWithoutAlineas('1', 'Quantas patas ha num pateiro de 6 patos?','5', '12 ou 0, dependendo se nos estamos a referir a patas dos patos ou ao animal pata (fem. do pato).\nOu isso ou outra coisa qualquer.'),                  
                   this.renderQuestionAndAnswerWithAlineas('2', 'Classifique as seguintes afirmações como verdadeiras ou falsas','5',
                                             [A1, A2], [A1_a, A2_a])  
@@ -286,6 +287,8 @@ class PDF {
     }
 
 
+/*'Av. Continua', 'Algoritmos e Estruturas de Dados (AED I - PL)', 
+    'LESI - PL', '2 de Nov de 2016','Nuno Oliveira','Aluno Teste', '43549'*/
     renderHeader(type, discipline, course, date, teacher, std_name, std_num) {
         var header = [
             { text: 'Exame ' + type, style: ['header', {alignment:'center'}] },

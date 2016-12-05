@@ -63,7 +63,6 @@ $(document).ready(function() {
         alert('export');
         ipcRenderer.send('export-exame-to-pdf', getAnswers());
     });
-
 });
 
 

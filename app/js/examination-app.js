@@ -92,10 +92,7 @@ class Exam {
 
         return exam;
     }
-
-    formatPDF(){}
-
-
+    
 }
 
 exports.Answer = Answer;

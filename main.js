@@ -77,7 +77,8 @@ ipcMain.on('ready-to-render', (event, name, number, url, eid, path)=>{
                 results.exam.url = url;
                 results.exam.id = eid;
                 results.exam.dir_path = path;
-                event.sender.send('render-content', results.exam);
+                exam = results.exam;
+                event.sender.send('render-content', exam);
                 return;
             }
         }
@@ -133,7 +134,7 @@ ipcMain.on('internet-disconnected', ()=> {
 ipcMain.on('export-exame-to-pdf', (event, answers)=>{
     exam.answers = answers;
     var pdf = new PDF(exam);
-    pdf.render(exam);
+    pdf.render();
 });
 
 
